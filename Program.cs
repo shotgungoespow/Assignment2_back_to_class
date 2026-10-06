@@ -34,7 +34,7 @@ namespace Assignment2_back_to_class
                 item.Cost -= discount;
                 //Console.WriteLine(item.Cost);
             }
-       
+
             Dictionary<string, ShellType> shells = new Dictionary<string, ShellType>()
             {
                 ["HE"] = new ShellType() { Name = "High Explosive", Cost = 1, Damage = 3, Radius = 4, Range = 5 },
@@ -44,9 +44,27 @@ namespace Assignment2_back_to_class
                 ["KP"] = new ShellType() { Name = "Kinetic Pen", Cost = 5, Damage = 10, Radius = 1, Range = 7 }
 
             };
-            Player player = new Player { Id = 1, UserName = "shotgungoespow", Level = 6, Favorite_Shell = shells["CL"] };
-            Console.WriteLine(player.Favorite_Shell.Name);
+
+            List<Player> players = new List<Player>();
+            Player player1 = new Player { Id = 1, UserName = "Bob", Level = 6, Favorite_Shell = shells["AP"] };
+            Player player2 = new Player { Id = 1, UserName = "Greg", Level = 10, Favorite_Shell = shells["HE"] };
+            players.Add(player1);
+            players.Add(player2);
+
+            Console.WriteLine("search user");
+            string input = Console.ReadLine();
+            ShellType found_fave = null;
+            foreach (Player player in players)
+            {
+                if (player.UserName == input)
+                {
+                    found_fave = player.Favorite_Shell; break;
+                }
+            }
+            Console.WriteLine("user " + input + "'s favorite shell is: " + found_fave.Name);
             Console.ReadKey();
+
+
 
 
 
